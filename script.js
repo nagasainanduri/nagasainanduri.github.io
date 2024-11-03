@@ -51,7 +51,7 @@ setInterval(draw, 35);
 
 //typed.js framework usage 
 new Typed('#typed-text', {
-    strings: ['Student', 'Android/Windows Developer', 'Linux Enthusiast', 'Full Stack developer'],
+    strings: ['Student', 'Android Developer', 'Linux Enthusiast', 'Full Stack developer'],
     typeSpeed: 50,
     backSpeed: 30,
     loop: true,
