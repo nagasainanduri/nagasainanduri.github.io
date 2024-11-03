@@ -7,7 +7,7 @@ AOS.init({
     disable: false
 });
 
-//Designing the Cyber Matric Background
+//Designing the Cyber Matrix Background
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 const matrixRain = document.querySelector('.matrix-rain');
@@ -86,6 +86,7 @@ window.addEventListener('resize', () => {
         hamburger.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
     }
 });
+
 //smooth scrolling 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
