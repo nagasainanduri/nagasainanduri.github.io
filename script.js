@@ -4,7 +4,7 @@ AOS.init({
     easing: 'ease-out-cubic',
     once: false,
     mirror: true,
-    disable: window.innerWidth < 768
+    disable: false
 });
 
 //Designing the Cyber Matric Background
