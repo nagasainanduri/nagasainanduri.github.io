@@ -1,4 +1,4 @@
-# My personalPortofolio
+# personalPortoflio website
 
 🚧 This portfolio website is currently under development 🚧
 
