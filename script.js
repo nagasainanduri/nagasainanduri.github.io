@@ -1,3 +1,4 @@
+//Initiate AOS Script
 AOS.init({
     duration: 1000,
     easing: 'ease-out-cubic',
@@ -6,6 +7,7 @@ AOS.init({
     disable: window.innerWidth < 768
 });
 
+//Designing the Cyber Matric Background
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 const matrixRain = document.querySelector('.matrix-rain');
@@ -47,8 +49,9 @@ function draw() {
 
 setInterval(draw, 35);
 
+//typed.js framework usage 
 new Typed('#typed-text', {
-    strings: ['Full Stack Developer', 'Android/Windows Developer', 'Linux Enthusiast'],
+    strings: ['Student', 'Android/Windows Developer', 'Linux Enthusiast', 'Full Stack developer'],
     typeSpeed: 50,
     backSpeed: 30,
     loop: true,
@@ -58,6 +61,7 @@ new Typed('#typed-text', {
     showCursor: false
 });
 
+//navigation for mobiles
 const hamburger = document.querySelector('.hamburger');
 const mobileNav = document.querySelector('.mobile-nav');
 const mobileLinks = document.querySelectorAll('.mobile-nav .nav-link');
@@ -82,7 +86,7 @@ window.addEventListener('resize', () => {
         hamburger.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
     }
 });
-
+//smooth scrolling 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -90,7 +94,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
             window.scrollTo({
                 top: offsetPosition,
