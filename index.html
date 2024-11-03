@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Neela Naga Sai | Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+
+    <!-- Core styles and resources -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="relative">
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm" style="background-color: var(--bg-secondary)">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold terminal-text hover:scale-105 transition-transform">~/nns</a>
+            
+            <div class="nav-links hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">cd ~</a>
+                <a href="#about" class="nav-link">whoami</a>
+                <a href="#qualifications" class="nav-link">cat resume.txt</a>
+                <a href="#work" class="nav-link">ls projects</a>
+                <a href="#contact" class="nav-link">contact</a>
+            </div>
+
+            <button class="hamburger md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="#home" class="nav-link">cd ~</a>
+        <a href="#about" class="nav-link">whoami</a>
+        <a href="#qualifications" class="nav-link">cat resume.txt</a>
+        <a href="#work" class="nav-link">ls projects</a>
+        <a href="#contact" class="nav-link">contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
+        <div class="matrix-bg"></div>
+        <div class="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 animate__animated animate__fadeIn">
+                    <span class="terminal-text">$</span> Hi, I'm <span class="gradient-text">NeelaNagaSai</span>
+                </h1>
+                <p class="text-lg sm:text-xl mb-8 text-gray-400" id="typed-text"></p>
+            </div>
+            <div class="relative" data-aos="fade-left" data-aos-duration="1200">
+                <div class="card p-4 md:p-8 max-w-md mx-auto hover:rotate-2 transition-all duration-300">
+                    <img src="assets/profile.jpg" alt="Profile" class="w-full md:w-3/4 rounded mx-auto hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-20 px-4 md:px-6" style="background-color: var(--bg-secondary)">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> whoami</h2>
+            
+            <!-- Introduction Subsection -->
+            <div class="card p-6 md:p-8 rounded-lg mb-8" data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 gradient-text">Introduction</h3>
+                <p class="text-sm md:text-base text-gray-400 leading-relaxed">
+                    I'm a passionate full-stack developer with a strong foundation in modern web technologies. 
+                    As a Linux enthusiast and command-line power user, I bring a systematic approach to problem-solving 
+                    and development. Currently pursuing my B.Tech in Computer Science, I combine academic knowledge 
+                    with practical experience to create efficient and innovative solutions.
+                </p>
+            </div>
+
+            <!-- Skills Subsection -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-code text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Development</h3>
+                    <p class="text-sm md:text-base text-gray-400">Full-stack developer with expertise in modern web technologies and frameworks.</p>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-terminal text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Systems</h3>
+                    <p class="text-sm md:text-base text-gray-400">Linux enthusiast and command-line power user.</p>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-brain text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Problem Solving</h3>
+                    <p class="text-sm md:text-base text-gray-400">Analytical approach to complex technical challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section id="qualifications" class="py-12 md:py-20 px-4 md:px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> cat resume.txt</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text">Education</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Computer Science (B.Tech)</h4>
+                            <p class="text-sm md:text-base text-gray-400">MIC College of Engineering • 2024-2027</p>
+                            <p class="text-sm md:text-base text-gray-400 mt-2">Relevant coursework in algorithms, data structures, and software engineering</p>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Computer Science (Diploma)</h4>
+                            <p class="text-sm md:text-base text-gray-400">Usha Rama College of Engineering • 2021-2024</p>
+                            <p class="text-sm md:text-base text-gray-400 mt-2">Specialized in computer science fundamentals and programming</p>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Technical Certifications</h4>
+                            <p class="text-sm md:text-base text-gray-400">Certification-1</p>
+                            <p class="text-sm md:text-base text-gray-400">Certification-2</p>
+                        </div>  
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text">Skills</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold mb-3">Languages</h4>
+                            <ul class="text-sm md:text-base text-gray-400 space-y-2">
+                                <li>JavaScript/TypeScript</li>
+                                <li>Python</li>
+                                <li>Java</li>
+                                <li>C++</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold mb-3">Technologies</h4>
+                            <ul class="text-sm md:text-base text-gray-400 space-y-2">
+                                <li>React/Next.js</li>
+                                <li>Node.js</li>
+                                <li>Docker</li>
+                                <li>AWS/GCP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b2296 ;">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> ls projects/</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="card overflow-hidden rounded-lg transform hover:rotate-1" data-aos="fade-up">
+                    <img src="assets/project1.jpg" alt="Project 1" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Project1</h3>
+                        <p class="text-sm md:text-base mb-4 text-gray-400">Description about the project1</p>
+                        <a href="#" class="text-accent hover:underline transform hover:translate-x-2 inline-block transition-transform">cat README.md →</a>
+                    </div>
+                </div>
+                <div class="card overflow-hidden rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/project2.jpg" alt="Project 2" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-2">Project2</h3>
+                        <p class="text-sm md:text-base mb-4 text-gray-400">Description about the project2</p>
+                        <a href="#" class="text-accent hover:underline transform hover:translate-x-2 inline-block transition-transform">cat README.md →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-20 px-4 md:px-6">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> contact</h2>
+            <div class="card p-6 md:p-8 rounded-lg text-center transform hover:rotate-1" data-aos="fade-up">
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl mb-2">Email</h3>
+                    <a href="mailto:nagasainanduri@gmail.com" class="text-sm md:text-base text-accent hover:underline transform hover:translate-y-[-2px] inline-block transition-transform">nagasainanduri@gmail.com</a>
+                </div>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/NagaSaiNanduri" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/_blank_hrt_" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-400 text-sm" style="background-color: var(--bg-secondary)">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Neela Naga Sai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
+</body>
+</html>
