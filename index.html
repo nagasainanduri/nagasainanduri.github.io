@@ -52,8 +52,20 @@
                 const loadingSpinner = document.querySelector('.loading-spinner');
                 
                 loadingSpinner.innerHTML = `
-                    <p class="text-red-500">Error loading repositories. Please try again later.</p>
+                    <p class="text-red-500">Error loading repositories. Please try again later or try refreshing the page !!</p>
                 `;
+            }
+        }
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.mobile-nav');
+            const isSidebarOpen = sidebar.classList.contains('translate-x-0');
+            
+            if (isSidebarOpen) {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('-translate-x-full');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
             }
         }
         document.addEventListener('DOMContentLoaded', () => {
@@ -66,70 +78,73 @@
     <!-- Matrix Rain Background -->
     <div class="matrix-rain"></div>
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm shadow-lg" style="background-color: #1c253196; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);">
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm shadow-lg transition-transform duration-300" style="background-color: #1c253196; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);">
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold terminal-text hover:scale-105 transition-transform">~/nns</a>
             
             <div class="nav-links hidden md:flex space-x-8">
-                <a href="#home" class="nav-link">cd ~</a>
-                <a href="#about" class="nav-link">whoami</a>
-                <a href="#qualifications" class="nav-link">cat resume.txt</a>
-                <a href="#work" class="nav-link">ls projects</a>
-                <a href="#contact" class="nav-link">contact</a>
+                <a href="#home" class="nav-link hover:text-accent transition-colors">cd ~</a>
+                <a href="#about" class="nav-link hover:text-accent transition-colors">whoami</a>
+                <a href="#qualifications" class="nav-link hover:text-accent transition-colors">cat resume.txt</a>
+                <a href="#work" class="nav-link hover:text-accent transition-colors">ls projects</a>
+                <a href="#contact" class="nav-link hover:text-accent transition-colors">contact</a>
             </div>
-
-            <button class="hamburger md:hidden">
+    
+            <button class="hamburger md:hidden focus:outline-none z-50" onclick="toggleSidebar()">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
     </nav>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <a href="#home" class="nav-link">cd ~</a>
-        <a href="#about" class="nav-link">whoami</a>
-        <a href="#qualifications" class="nav-link">cat resume.txt</a>
-        <a href="#work" class="nav-link">ls projects</a>
-        <a href="#contact" class="nav-link">contact</a>
+    
+    <!-- Mobile Sidebar Navigation -->
+    <div class="mobile-nav fixed top-0 left-0 h-full w-64 bg-black bg-opacity-95 transform -translate-x-full transition-transform duration-300 z-40">
+        <div class="flex flex-col items-center justify-start space-y-8 mt-16">
+            <a href="#home" class="nav-link text-xl hover:text-accent transition-colors">cd ~</a>
+            <a href="#about" class="nav-link text-xl hover:text-accent transition-colors">whoami</a>
+            <a href="#qualifications" class="nav-link text-xl hover:text-accent transition-colors">cat resume.txt</a>
+            <a href="#work" class="nav-link text-xl hover:text-accent transition-colors">ls projects</a>
+            <a href="#contact" class="nav-link text-xl hover:text-accent transition-colors">contact</a>
+        </div>
     </div>
-
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative animate__animated animate__fadeIn">
-        <div class="matrix-bg animate__animated animate__fadeIn animate__slower"></div>
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
+        <div class="matrix-bg"></div>
         <div class="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
-            <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left hover:transform hover:scale-105 transition-all duration-300">
-                <div class="terminal-window mb-6 animate__animated animate__slideInUp">
-                    <div class="terminal-header hover:opacity-90 transition-opacity">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left hover:transform hover:scale-105 transition-all duration-300 relative">
+                <div class="hero-bg absolute top-0 left-0 w-full h-full"></div>
+                <div class="terminal-window mb-6 relative" style="background-color: var(--bg-secondary); border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                    <div class="terminal-header hover:opacity-90 transition-opacity" style="background-color: var(--bg-primary); padding: 8px 12px; border-bottom: 1px solid var(--bg-secondary);">
                         <div class="terminal-buttons">
-                            <span class="terminal-button close hover:scale-110 transition-transform"></span>
-                            <span class="terminal-button minimize hover:scale-110 transition-transform"></span>
-                            <span class="terminal-button maximize hover:scale-110 transition-transform"></span>
+                            <span class="terminal-button close hover:scale-110 transition-transform" style="color: var(--accent); margin-right: 8px;">&#120;</span>
+                            <span class="terminal-button minimize hover:scale-110 transition-transform" style="color: var(--accent); margin-right: 8px;">&#128469;</span>
+                            <span class="terminal-button maximize hover:scale-110 transition-transform" style="color: var(--accent);">&#128470;</span>
                         </div>
-                        <div class="terminal-title">visitor@portfolio:~</div>
-                    </div>
-                    <div class="terminal-content p-4">
-                        <p class="terminal-line animate__animated animate__fadeIn animate__delay-1s"><span class="terminal-prompt">$</span> whoami</p>
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold animate__animated animate__fadeIn animate__delay-2s">
-                            <span class="gradient-text hover:brightness-110 transition-all">NeelaNagaSai</span>
-                        </h1>
-                        <p class="terminal-line animate__animated animate__fadeIn animate__delay-3s"><span class="terminal-prompt">></span> <span id="typed-text" class="text-lg sm:text-xl text-gray-400"></span></p>
+                    </div><br>
+                    <div class="terminal-title" style="color: var(--text-primary); font-weight: bold;padding-left: 20px;">visitor@portfolio:~</div>
+                    <div class="terminal-content p-4" style="color: var(--text-primary);">
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent);">$</span> cat name.txt | figlet</p>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold">
+                            <span class="gradient-text hover:brightness-110 transition-all" style="color: var(--accent);">NeelaNagaSai</span>
+                        </h1><br>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent);">$</span> whoami</p>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent);">></span> <span id="typed-text" class="text-lg sm:text-xl text-gray-400"></span></p>
                     </div>
                 </div>
             </div>
-            <div class="relative" data-aos="fade-left" data-aos-duration="1200">
+            <div class="relative overflow-hidden" data-aos="fade-left" data-aos-duration="1200">
                 <div class="card glowing-border p-6 md:p-10 max-w-md mx-auto terminal-style hover:transform hover:scale-105 transition-all duration-500 backdrop-blur-sm">
-                    <div class="relative animate__animated animate__zoomIn group">
+                    <div class="relative group">
                         <div class="hexagon-container mx-auto w-4/5 relative">
                             <div class="hexagon-clip overflow-hidden">
                                 <img src="assets/pfp.jpeg" alt="Profile" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 pixelated-effect">
                             </div>
-                            <div class="matrix-overlay absolute inset-0 opacity-30 animate__animated animate__fadeIn animate__delay-1s group-hover:opacity-50 transition-opacity"></div>
+                            <div class="matrix-overlay absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity"></div>
                             <div class="glitch-effect"></div>
                         </div>
                     </div>
-                    <div class="terminal-status mt-6 animate__animated animate__fadeIn animate__delay-2s flex items-center justify-center space-x-3">
+                    <div class="terminal-status mt-6 flex items-center justify-center space-x-3">
                         <span class="text-green-500 animate-pulse text-lg">●</span>
-                        <span class="typing-animation">Status: Online_</span>
+                        <span class="typing-animation">Status: Online</span>
                     </div>
                 </div>
             </div>
@@ -227,7 +242,7 @@
     </section>
 
     <!-- Work Section -->
-    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b2296;">
+    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b22e0;">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> ls projects/</h2>
             <div id="github-repos" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
