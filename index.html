@@ -16,9 +16,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        // GitHub repos loading script
+        const GITHUB_USERNAME = 'NagaSaiNanduri';
+        const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+        async function loadGitHubRepos() {
+            try {
+                const response = await fetch(GITHUB_API_URL);
+                const repos = await response.json();
+
+                const sortedRepos = repos
+                    .filter(repo => !repo.fork)
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                    .slice(0, 6);
+
+                const reposContainer = document.getElementById('github-repos');
+                const template = document.getElementById('repo-template');
+                const loadingSpinner = document.querySelector('.loading-spinner');
+                loadingSpinner.remove();
+
+                sortedRepos.forEach(repo => {
+                    const card = template.content.cloneNode(true);
+                    
+                    card.querySelector('h3').textContent = repo.name;
+                    card.querySelector('.repo-description').textContent = repo.description || 'No description available';
+                    card.querySelector('.repo-language').textContent = repo.language || 'N/A';
+                    card.querySelector('.repo-stars').textContent = repo.stargazers_count;
+                    card.querySelector('.repo-link').href = repo.html_url;
+
+                    reposContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Error fetching GitHub repos:', error);
+                const reposContainer = document.getElementById('github-repos');
+                const loadingSpinner = document.querySelector('.loading-spinner');
+                
+                loadingSpinner.innerHTML = `
+                    <p class="text-red-500">Error loading repositories. Please try again later.</p>
+                `;
+            }
+        }
+
+        // Load repos and init Three.js when document is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGitHubRepos();
+        });
+    </script>
+
 </head>
 
+<!-- Rest of the HTML remains unchanged -->
 <body class="relative">
+    <!-- Three.js Container -->
+    <div id="three-container"></div>
+
     <!-- Matrix Rain Background -->
     <div class="matrix-rain"></div>
     
@@ -51,7 +104,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
         <div class="matrix-bg"></div>
         <div class="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
             <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left">
@@ -61,7 +114,7 @@
                 <p class="text-lg sm:text-xl mb-8 text-gray-400" id="typed-text"></p>
             </div>
             <div class="relative" data-aos="fade-left" data-aos-duration="1200">
-                <div class="card p-4 md:p-8 max-w-md mx-auto hover:rotate-2 transition-all duration-300">
+                <div class="card p-4 md:p-8 max-w-md mx-auto">
                     <img src="assets/profile.jpg" alt="Profile" class="w-full md:w-3/4 rounded mx-auto hover:scale-105 transition-transform duration-300">
                 </div>
             </div>
@@ -86,17 +139,17 @@
 
             <!-- Skills Subsection -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="100">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-code text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
                     <h3 class="text-lg md:text-xl font-bold mb-4">Development</h3>
                     <p class="text-sm md:text-base text-gray-400">Full-stack developer with expertise in modern web technologies and frameworks.</p>
                 </div>
-                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="200">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-terminal text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
                     <h3 class="text-lg md:text-xl font-bold mb-4">Systems</h3>
                     <p class="text-sm md:text-base text-gray-400">Linux enthusiast and command-line power user.</p>
                 </div>
-                <div class="card p-6 md:p-8 rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-brain text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
                     <h3 class="text-lg md:text-xl font-bold mb-4">Problem Solving</h3>
                     <p class="text-sm md:text-base text-gray-400">Analytical approach to complex technical challenges.</p>
@@ -159,26 +212,33 @@
     </section>
 
     <!-- Work Section -->
-    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b2296 ;">
+    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b2296;">
         <div class="container mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> ls projects/</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div class="card overflow-hidden rounded-lg transform hover:rotate-1" data-aos="fade-up">
-                    <img src="assets/project1.jpg" alt="Project 1" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-bold mb-2">Project1</h3>
-                        <p class="text-sm md:text-base mb-4 text-gray-400">Under Development</p>
-                        <a href="#" class="text-accent hover:underline transform hover:translate-x-2 inline-block transition-transform">cat README.md →</a>
-                    </div>
+            <div id="github-repos" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <!-- GitHub repos will be dynamically loaded here -->
+                <div class="loading-spinner text-center col-span-2">
+                    <i class="fas fa-spinner fa-spin text-4xl text-accent"></i>
                 </div>
-                <div class="card overflow-hidden rounded-lg transform hover:rotate-1" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/project2.jpg" alt="Project 2" class="w-full h-48 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
-                    <div class="p-4 md:p-6">
-                        <h3 class="text-lg md:text-xl font-bold mb-2">Project2</h3>
-                        <p class="text-sm md:text-base mb-4 text-gray-400">Under Development</p>
-                        <a href="#" class="text-accent hover:underline transform hover:translate-x-2 inline-block transition-transform">cat README.md →</a>
+                <template id="repo-template">
+                    <div class="card p-6 rounded-lg hover:scale-[1.02] transition-transform" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-3 gradient-text"></h3>
+                        <p class="text-gray-400 text-sm mb-4 repo-description"></p>
+                        <div class="flex items-center space-x-4 text-sm mb-4">
+                            <span class="flex items-center">
+                                <i class="fas fa-code-branch mr-2"></i>
+                                <span class="repo-language"></span>
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-star mr-2"></i>
+                                <span class="repo-stars"></span>
+                            </span>
+                            <a href="#" class="repo-link ml-auto text-accent hover:underline" target="_blank">
+                                <p class="font-bold font text-lg">$cat README.md</p>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </template>
             </div>
         </div>
     </section>
@@ -187,7 +247,7 @@
     <section id="contact" class="py-12 md:py-20 px-4 md:px-6">
         <div class="container mx-auto max-w-2xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> contact</h2>
-            <div class="card p-6 md:p-8 rounded-lg text-center transform hover:rotate-1" data-aos="fade-up">
+            <div class="card p-6 md:p-8 rounded-lg text-center" data-aos="fade-up">
                 <div class="mb-6 md:mb-8">
                     <h3 class="text-lg md:text-xl mb-2">Email</h3>
                     <a href="mailto:nagasainanduri@gmail.com" class="text-sm md:text-base text-accent hover:underline transform hover:translate-y-[-2px] inline-block transition-transform">nagasainanduri@gmail.com</a>
@@ -199,7 +259,7 @@
                     <a href="https://instagram.com/_blank_hrt_" class="social-link text-xl md:text-2xl" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://linkedin.com/in/yourusername" class="social-link text-xl md:text-2xl" target="_blank">
+                    <a href="https://linkedin.com/in/nagasainanduri" class="social-link text-xl md:text-2xl" target="_blank">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
