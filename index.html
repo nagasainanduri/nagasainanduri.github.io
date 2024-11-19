@@ -58,26 +58,18 @@
                 `;
             }
         }
-
-        // Load repos and init Three.js when document is ready
         document.addEventListener('DOMContentLoaded', () => {
             loadGitHubRepos();
         });
     </script>
 
 </head>
-
-<!-- Rest of the HTML remains unchanged -->
 <body class="relative">
-    <!-- Three.js Container -->
-    <div id="three-container"></div>
-
     <!-- Matrix Rain Background -->
     <div class="matrix-rain"></div>
-    
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm" style="background-color: var(--bg-secondary)">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav class="fixed left-1/2 transform -translate-x-1/2 top-4 z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm rounded-full shadow-lg max-w-4xl w-11/12" style="background-color: #1c253196; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);">
+        <div class="flex justify-between items-center">
             <a href="#" class="text-2xl font-bold terminal-text hover:scale-105 transition-transform">~/nns</a>
             
             <div class="nav-links hidden md:flex space-x-8">
@@ -104,18 +96,43 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
-        <div class="matrix-bg"></div>
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative animate__animated animate__fadeIn">
+        <div class="matrix-bg animate__animated animate__fadeIn animate__slower"></div>
         <div class="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
-            <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left">
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 animate__animated animate__fadeIn">
-                    <span class="terminal-text">$</span> Hi, I'm <span class="gradient-text">NeelaNagaSai</span>
-                </h1>
-                <p class="text-lg sm:text-xl mb-8 text-gray-400" id="typed-text"></p>
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center md:text-left hover:transform hover:scale-105 transition-all duration-300">
+                <div class="terminal-window mb-6 animate__animated animate__slideInUp">
+                    <div class="terminal-header hover:opacity-90 transition-opacity">
+                        <div class="terminal-buttons">
+                            <span class="terminal-button close hover:scale-110 transition-transform"></span>
+                            <span class="terminal-button minimize hover:scale-110 transition-transform"></span>
+                            <span class="terminal-button maximize hover:scale-110 transition-transform"></span>
+                        </div>
+                        <div class="terminal-title">visitor@portfolio:~</div>
+                    </div>
+                    <div class="terminal-content p-4">
+                        <p class="terminal-line animate__animated animate__fadeIn animate__delay-1s"><span class="terminal-prompt">$</span> whoami</p>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold animate__animated animate__fadeIn animate__delay-2s">
+                            <span class="gradient-text hover:brightness-110 transition-all">NeelaNagaSai</span>
+                        </h1>
+                        <p class="terminal-line animate__animated animate__fadeIn animate__delay-3s"><span class="terminal-prompt">></span> <span id="typed-text" class="text-lg sm:text-xl text-gray-400"></span></p>
+                    </div>
+                </div>
             </div>
             <div class="relative" data-aos="fade-left" data-aos-duration="1200">
-                <div class="card p-4 md:p-8 max-w-md mx-auto">
-                    <img src="assets/profile.jpg" alt="Profile" class="w-full md:w-3/4 rounded mx-auto hover:scale-105 transition-transform duration-300">
+                <div class="card glowing-border p-6 md:p-10 max-w-md mx-auto terminal-style hover:transform hover:scale-105 transition-all duration-500 backdrop-blur-sm">
+                    <div class="relative animate__animated animate__zoomIn group">
+                        <div class="hexagon-container mx-auto w-4/5 relative">
+                            <div class="hexagon-clip overflow-hidden">
+                                <img src="assets/pfp.jpeg" alt="Profile" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 pixelated-effect">
+                            </div>
+                            <div class="matrix-overlay absolute inset-0 opacity-30 animate__animated animate__fadeIn animate__delay-1s group-hover:opacity-50 transition-opacity"></div>
+                            <div class="glitch-effect"></div>
+                        </div>
+                    </div>
+                    <div class="terminal-status mt-6 animate__animated animate__fadeIn animate__delay-2s flex items-center justify-center space-x-3">
+                        <span class="text-green-500 animate-pulse text-lg">●</span>
+                        <span class="typing-animation">Status: Online_</span>
+                    </div>
                 </div>
             </div>
         </div>
