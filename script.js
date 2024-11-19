@@ -1,7 +1,7 @@
 //Initiate AOS Script
 AOS.init({
-    duration: 1000,
-    easing: 'ease-out-cubic',
+    duration: 500,
+    easing: 'ease-in-out',
     once: false,
     mirror: true,
     disable: false
@@ -51,7 +51,7 @@ setInterval(draw, 35);
 
 //typed.js framework usage 
 new Typed('#typed-text', {
-    strings: ['Student', 'Android Developer', 'Linux Enthusiast', 'Full Stack developer'],
+    strings: ['Student', 'Android-Dev', 'Linux Enthusiast', 'Full-Stack Dev'],
     typeSpeed: 50,
     backSpeed: 30,
     loop: true,
