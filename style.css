@@ -83,8 +83,6 @@ body {
 
 .matrix-rain canvas {
     opacity: 0.1;
-}
-canvas {
     position: fixed;
     top: 0;
     left: 0;
