@@ -25,7 +25,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
 // Typed.js Framework Usage
 new Typed('#typed-text', {
     strings: ['Student', 'Android-Dev', 'Linux Enthusiast', 'Full-Stack Dev'],
