@@ -1,6 +1,6 @@
 # My Personal Portofolio
 
-Welcome to my website! I'm thrilled to share this platform with you.
+Welcome to my website! I'm thrilled to share this with you.
 
 ## About
 
