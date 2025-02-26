@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Neela Naga Sai | Portfolio</title>
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+    <!-- Core styles and resources -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // GitHub repos loading script
+        const GITHUB_USERNAME = 'NagaSaiNanduri';
+        const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+        async function loadGitHubRepos() {
+            try {
+                const response = await fetch(GITHUB_API_URL);
+                const repos = await response.json();
+
+                const sortedRepos = repos
+                    .filter(repo => !repo.fork)
+                    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                    .slice(0, 6);
+
+                const reposContainer = document.getElementById('github-repos');
+                const template = document.getElementById('repo-template');
+                const loadingSpinner = document.querySelector('.loading-spinner');
+                loadingSpinner.remove();
+
+                sortedRepos.forEach(repo => {
+                    const card = template.content.cloneNode(true);
+                    
+                    card.querySelector('h3').textContent = repo.name;
+                    card.querySelector('.repo-description').textContent = repo.description || 'No description available';
+                    card.querySelector('.repo-language').textContent = repo.language || 'N/A';
+                    card.querySelector('.repo-stars').textContent = repo.stargazers_count;
+                    card.querySelector('.repo-link').href = repo.html_url;
+
+                    reposContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Error fetching GitHub repos:', error);
+                const reposContainer = document.getElementById('github-repos');
+                const loadingSpinner = document.querySelector('.loading-spinner');
+                
+                loadingSpinner.innerHTML = `
+                    <p class="text-red-500">Error loading repositories. Please try again later or try refreshing the page !!</p>
+                `;
+            }
+        }
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.mobile-nav');
+            const isSidebarOpen = sidebar.classList.contains('translate-x-0');
+            
+            if (isSidebarOpen) {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('-translate-x-full');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGitHubRepos();
+        });
+    </script>
+
+</head>
+<body class="relative">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-opacity-90 backdrop-filter backdrop-blur-sm shadow-lg transition-transform duration-300" style="background-color: #1c253196; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold terminal-text hover:scale-105 transition-transform">~/nns</a>
+            
+            <div class="nav-links hidden md:flex space-x-8">
+                <a href="#home" class="nav-link hover:text-accent transition-colors">$cd </a>
+                <a href="#about" class="nav-link hover:text-accent transition-colors">$whoami</a>
+                <a href="#qualifications" class="nav-link hover:text-accent transition-colors">$cat resume.txt</a>
+                <a href="#work" class="nav-link hover:text-accent transition-colors">$ls projects</a>
+                <a href="#contact" class="nav-link hover:text-accent transition-colors">$contact</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
+        <div class="matrix-bg"></div>
+        <div class="container mx-auto flex items-center justify-center relative z-10">
+            <div data-aos="fade-right" data-aos-duration="1200" class="text-center hover:transform hover:scale-105 transition-all duration-300 relative">
+                <div class="hero-bg absolute top-0 left-0 w-full h-full"></div>
+                <div class="terminal-window mb-6 relative" style="background-color: var(--bg-primary); border-radius: 4px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 100%; max-width: 1200px; margin: 0 auto;">
+                    <div class="terminal-header flex items-center justify-between" style="background-color: var(--bg-secondary); padding: 16px 24px; border-bottom: 1px solid var(--bg-primary);">
+                        <div class="terminal-buttons flex space-x-2">
+                            <span class="terminal-button close" style="background-color: #ff5f56; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
+                            <span class="terminal-button minimize" style="background-color: #ffbd2e; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
+                            <span class="terminal-button maximize" style="background-color: #27c93f; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
+                        </div>
+                        <div class="terminal-title" style="color: var(--text-secondary); font-weight: bold; font-size: 1.25rem;">visitor@portfolio:~</div>
+                    </div>
+                    <div class="terminal-content p-8" style="color: var(--text-primary); font-family: 'JetBrains Mono', monospace; text-align: left; overflow-x: auto; min-height: 200px;">
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">$</span> cat name.txt | figlet</p>
+                        <pre class="text-5xl sm:text-6xl md:text-7xl font-bold whitespace-pre-wrap" style="color: var(--accent);">NeelaNagaSai  
+                        </pre>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">$</span> whoami</p>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">> </span><span id="typed-text" class="text-xl sm:text-2xl text-gray-400"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-20 px-4 md:px-6" style="background-color: var(--bg-secondary)">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> whoami</h2>
+            
+            <!-- Introduction Subsection -->
+            <div class="card p-6 md:p-8 rounded-lg mb-8" data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 gradient-text">Introduction</h3>
+                <p class="text-sm md:text-base text-gray-400 leading-relaxed">
+                    I'm a passionate full-stack developer with a strong foundation in modern web technologies and some experience.
+                    As a Linux enthusiast and command-line power user, I bring a systematic approach to problem-solving 
+                    and development. Currently pursuing my B.Tech in Computer Science, I combine academic knowledge 
+                    with practical experience to create efficient and innovative solutions.
+                </p>
+            </div>
+
+            <!-- Skills Subsection -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-code text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Development</h3>
+                    <p class="text-sm md:text-base text-gray-400">Full-stack developer with expertise in modern web technologies and frameworks.</p>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-terminal text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Systems</h3>
+                    <p class="text-sm md:text-base text-gray-400">Linux enthusiast and command-line power user.</p>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-brain text-3xl md:text-4xl mb-4" style="color: var(--accent)"></i>
+                    <h3 class="text-lg md:text-xl font-bold mb-4">Problem Solving</h3>
+                    <p class="text-sm md:text-base text-gray-400">Analytical approach to complex technical challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section id="qualifications" class="py-12 md:py-20 px-4 md:px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> cat resume.txt</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text">Education</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Computer Science (B.Tech)</h4>
+                            <p class="text-sm md:text-base text-gray-400">MIC College of Engineering • 2024-2027</p>
+                            <p class="text-sm md:text-base text-gray-400 mt-2">Relevant coursework in algorithms, data structures, and software engineering</p>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Computer Science (Diploma)</h4>
+                            <p class="text-sm md:text-base text-gray-400">Usha Rama College of Engineering • 2021-2024</p>
+                            <p class="text-sm md:text-base text-gray-400 mt-2">Specialized in computer science fundamentals and programming</p>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold">Technical Certifications</h4>
+                            <p class="text-sm md:text-base text-gray-400">REDHAT-D101</p>
+                            <p class="text-sm md:text-base text-gray-400">Google Associate Android Developer</p>
+                        </div>  
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text">Skills</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold mb-3">Languages</h4>
+                            <ul class="text-sm md:text-base text-gray-400 space-y-2">
+                                <li>JavaScript/TypeScript</li>
+                                <li>Dart</li>
+                                <li>Python</li>
+                                <li>Java</li>
+                                <li>C++</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-base md:text-lg font-bold mb-3">Technologies</h4>
+                            <ul class="text-sm md:text-base text-gray-400 space-y-2">
+                                <li>React/Next.js</li>
+                                <li>Flutter</li>
+                                <li>Node.js</li>
+                                <li>Docker</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-12 md:py-20 px-4 md:px-6" style="background-color: #161b22e0;">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> ls projects/</h2>
+            <div id="github-repos" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="loading-spinner text-center col-span-2">
+                    <i class="fas fa-spinner fa-spin text-4xl text-accent"></i>
+                </div>
+                <template id="repo-template">
+                    <div class="card p-6 rounded-lg hover:scale-[1.02] transition-transform" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-3 gradient-text"></h3>
+                        <p class="text-gray-400 text-sm mb-4 repo-description"></p>
+                        <div class="flex items-center space-x-4 text-sm mb-4">
+                            <span class="flex items-center">
+                                <i class="fas fa-code-branch mr-2"></i>
+                                <span class="repo-language"></span>
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-star mr-2"></i>
+                                <span class="repo-stars"></span>
+                            </span>
+                            <a href="#" class="repo-link ml-auto text-accent hover:underline" target="_blank">
+                                <p class="font-bold font text-lg">$ cat README.md</p>
+                            </a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-20 px-4 md:px-6">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> contact</h2>
+            <div class="card p-6 md:p-8 rounded-lg text-center" data-aos="fade-up">
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl mb-2">Email</h3>
+                    <a href="mailto:nagasainanduri@gmail.com" class="text-sm md:text-base text-accent hover:underline transform hover:translate-y-[-2px] inline-block transition-transform">nagasainanduri@gmail.com</a>
+                </div>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/NagaSaiNanduri" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/_blank_hrt_" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/nagasainanduri" class="social-link text-xl md:text-2xl" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-400 text-sm" style="background-color: var(--bg-secondary)">
+        <div class="container mx-auto">
+            <p>&copy; 2024 Neela Naga Sai. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
+</body>
+</html>
