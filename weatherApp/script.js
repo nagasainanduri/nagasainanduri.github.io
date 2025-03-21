@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const res = await fetch(`https://wttr.in/${location}?format=j1`);
+            if (!res.ok) throw new Error("Network response was not ok");
             const data = await res.json();
             updateWeatherUI(data, location);
         } catch (error) {
@@ -50,8 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".uv-index").textContent = `UV Index: ${uvIndex}`;
 
         if (weatherIcons[weatherDesc]) {
-            const iconPath = weatherIcons[weatherDesc]?.icon || "images/default.png";
-            console.log("Icon Path:", iconPath);
+            const iconPath = weatherIcons[weatherDesc].icon || "images/default.png";
             weatherIcon.src = iconPath;
             weatherDescription.textContent = weatherIcons[weatherDesc].desc;
         } else {
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         errorContainer.style.display = "block";
         errorContainer.textContent = message;
         loadingIndicator.style.display = "none";
-        weatherContainer.classList.add("loading");
+        weatherContainer.classList.remove("loading");
     };
 
     searchBox.addEventListener("input", async () => {
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=5`);
+            if (!res.ok) throw new Error("Network response was not ok");
             const data = await res.json();
             suggestionsContainer.innerHTML = data.map(city => 
                 `<div class="suggestion">${city.display_name}</div>`
