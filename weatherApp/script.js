@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateWeatherUI = (data, city) => {
         const current = data.current_condition[0];
-        const { temp_C, humidity, windspeedKmph, uvIndex, pressure } = current;
+        const { temp_C, humidity, windspeedKmph, uvIndex, pressure, localObsDateTime } = current;
         const weatherDesc = current.weatherDesc[0].value;
         const today = data.weather[0];
         const lat = parseFloat(data.nearest_area[0].latitude);
@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".city").textContent = city;
         document.querySelector(".temp").textContent = `${temp_C}°C`;
         document.querySelector(".description").textContent = weatherDesc;
+        document.querySelector(".text-information").textContent = `Last Observation : ${localObsDateTime}`
         document.querySelector(".temp-hi").textContent = `H:  ${today.maxtempC}°C`;
         document.querySelector(".temp-lo").textContent = `L:  ${today.mintempC}°C`;
         document.querySelector(".pressure").textContent = `Pressure:  ${pressure}`;
