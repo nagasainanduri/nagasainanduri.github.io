@@ -3,8 +3,7 @@ AOS.init({
     duration: 500,
     easing: 'ease-out-cubic',
     once: false,
-    mirror: true,
-    disable: false
+    offset: 200 
 });
 
 // Smooth Scrolling
@@ -16,7 +15,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const headerOffset = 80;
             const elementPosition = target.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.scrollY - headerOffset;
-            
+
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
@@ -37,9 +36,10 @@ new Typed('#typed-text', {
     showCursor: false
 });
 
-// GitHub repos loading script
+// GitHub Repos Loading Script
 const GITHUB_USERNAME = 'NagaSaiNanduri';
 const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+
 async function loadGitHubRepos() {
     try {
         const response = await fetch(GITHUB_API_URL);
@@ -57,7 +57,7 @@ async function loadGitHubRepos() {
 
         sortedRepos.forEach(repo => {
             const card = template.content.cloneNode(true);
-            
+
             card.querySelector('h3').textContent = repo.name;
             card.querySelector('.repo-description').textContent = repo.description || 'No description available';
             card.querySelector('.repo-language').textContent = repo.language || 'N/A';
@@ -71,29 +71,26 @@ async function loadGitHubRepos() {
         console.error('Error fetching GitHub repos:', error);
         const reposContainer = document.getElementById('github-repos');
         const loadingSpinner = document.querySelector('.loading-spinner');
-        
+
         loadingSpinner.innerHTML = `
             <p class="text-red-500">Error loading repositories. Please try again later or try refreshing the page !!</p>
         `;
     }
 }
-document.addEventListener('DOMContentLoaded', () => {
-    loadGitHubRepos();
-});
 
 // Cyber Matrix Background Script
-document.addEventListener('DOMContentLoaded', () => {
+function initializeMatrixBackground() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     document.body.appendChild(canvas);
-    
+
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-    
+
     const chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?~アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヰヱヲン";
     const drops = [];
     const fontSize = 16;
@@ -101,18 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < columns; i++) {
         drops[i] = 1;
     }
-    
+
     function draw() {
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    
+
         ctx.fillStyle = '#58a6ff';
         ctx.font = fontSize + 'px monospace';
-                    
+
         for (let i = 0; i < drops.length; i++) {
             const text = chars[Math.floor(Math.random() * chars.length)];
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        
+
             if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
@@ -120,5 +117,92 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     setInterval(draw, 35);
+}
+
+// Certifications Script
+function loadCertifications() {
+    fetch('/scripts/certifications.json')
+        .then(response => response.json())
+        .then(data => {
+            const certificationsContainer = document.getElementById('certifications-container');
+            const certificationTemplate = document.getElementById('certification-template');
+
+            data.certifications.forEach(certification => {
+                const clone = certificationTemplate.content.cloneNode(true);
+                clone.querySelector('.certification-title').textContent = certification.title;
+                clone.querySelector('.certification-issuer').textContent = `Issuer: ${certification.issuer}`;
+                clone.querySelector('.certification-date').textContent = `Date: ${certification.date}`;
+                clone.querySelector('.certification-description').textContent = certification.description;
+
+                certificationsContainer.appendChild(clone);
+            });
+        })
+        .catch(error => console.error('Error loading certifications:', error));
+}
+
+// Education Script
+function loadEducation() {
+    fetch('/scripts/education.json')
+        .then(response => response.json())
+        .then(data => {
+            const educationContainer = document.getElementById('education-container');
+            const educationTemplate = document.getElementById('education-template');
+
+            data.education.forEach(item => {
+                const clone = educationTemplate.content.cloneNode(true);
+                clone.querySelector('.education-degree').textContent = item.degree;
+                clone.querySelector('.education-institution').textContent = item.institution;
+                clone.querySelector('.education-description').textContent = item.description;
+
+                educationContainer.appendChild(clone);
+            });
+        })
+        .catch(error => console.error('Error loading education data:', error));
+}
+
+// Skills Script
+function loadSkills() {
+    fetch('/scripts/skills.json')
+        .then(response => response.json())
+        .then(data => {
+            const skillsContainer = document.getElementById('skills-container');
+            const skillsTemplate = document.getElementById('skills-template');
+
+            data.skills.forEach(skill => {
+                const clone = skillsTemplate.content.cloneNode(true);
+                clone.querySelector('.skill-category').textContent = skill.category;
+
+                const skillList = clone.querySelector('.skill-list');
+                skill.items.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('flex', 'items-center', 'space-x-2');
+
+                    // Add logo
+                    const logo = document.createElement('img');
+                    logo.src = item.logo;
+                    logo.alt = `${item.name} logo`;
+                    logo.classList.add('w-6', 'h-6'); // Adjust size as needed
+
+                    // Add skill name
+                    const skillName = document.createElement('span');
+                    skillName.textContent = item.name;
+
+                    listItem.appendChild(logo);
+                    listItem.appendChild(skillName);
+                    skillList.appendChild(listItem);
+                });
+
+                skillsContainer.appendChild(clone);
+            });
+        })
+        .catch(error => console.error('Error loading skills data:', error));
+}
+
+// Initialize All Scripts on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    loadGitHubRepos();
+    initializeMatrixBackground();
+    loadCertifications();
+    loadEducation();
+    loadSkills();
 });
- 

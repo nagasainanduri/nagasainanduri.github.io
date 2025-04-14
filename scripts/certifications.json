@@ -1,0 +1,16 @@
+{
+    "certifications": [
+      {
+        "title": "REDHAT-D101",
+        "issuer": "Red Hat",
+        "date": "2023-06",
+        "description": "Certification in Red Hat Linux system administration and management."
+      },
+      {
+        "title": "Google Associate Android Developer",
+        "issuer": "Google",
+        "date": "2024-01",
+        "description": "Certification in Android application development using modern tools and practices."
+      }
+    ]
+  }
