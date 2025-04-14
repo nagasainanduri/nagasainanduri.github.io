@@ -3,7 +3,8 @@ AOS.init({
     duration: 500,
     easing: 'ease-out-cubic',
     once: false,
-    offset: 200 
+    mirror: true,
+    offset: 100 
 });
 
 // Smooth Scrolling
