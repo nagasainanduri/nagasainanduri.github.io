@@ -33,38 +33,65 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-2xl font-bold terminal-text hover:scale-105 transition-transform">~/nns</a>
             
-            <div class="nav-links hidden md:flex space-x-8">
-                <a href="#home" class="nav-link hover:text-accent transition-colors">$cd </a>
-                <a href="#about" class="nav-link hover:text-accent transition-colors">$wget info.md</a>
-                <a href="#qualifications" class="nav-link hover:text-accent transition-colors">$wget resume.md</a>
-                <a href="#work" class="nav-link hover:text-accent transition-colors">$ls projects/</a>
-                <a href="#contact" class="nav-link hover:text-accent transition-colors">$contact</a>
-            </div>
-
+            <button id="menu-toggle" class="menu-button text-2xl text-accent hover:text-white transition-colors">
+                <i class="fas fa-terminal"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Full Screen Menu -->
+    <div id="fullscreen-menu" class="fixed inset-0 bg-bg-primary z-40 transform translate-x-full transition-transform duration-500">
+        <div class="menu-glitch-container">
+            <div class="menu-glitch-layer"></div>
+            <div class="menu-glitch-layer"></div>
+            <div class="menu-glitch-layer"></div>
+        </div>
+        <div class="menu-content">
+            <div class="menu-header">
+                <div class="menu-title glitch-text whitespace-nowrap overflow-hidden text-ellipsis" data-text="SYSTEM MENU">SYSTEM MENU</div>
+                <div class="menu-subtitle">> Select an option to proceed</div>
+            </div>
+            <div class="menu-links">
+                <a href="#home" class="menu-link">
+                    <span class="menu-link-text" data-text="$ init_system">$ init_system</span>
+                </a>
+                <a href="#about" class="menu-link">
+                    <span class="menu-link-text" data-text="$ access_bio.dat">$ access_bio.dat</span>
+                </a>
+                <a href="#qualifications" class="menu-link">
+                    <span class="menu-link-text" data-text="$ decrypt_credentials">$ decrypt_credentials</span>
+                </a>
+                <a href="#work" class="menu-link">
+                    <span class="menu-link-text" data-text="$ scan_archives">$ scan_archives</span>
+                </a>
+                <a href="#contact" class="menu-link">
+                    <span class="menu-link-text" data-text="$ establish_connection">$ establish_connection</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20 relative">
         <div class="matrix-bg"></div>
         <div class="container mx-auto flex items-center justify-center relative z-10">
-            <div data-aos="fade-right" data-aos-duration="1200" class="text-center hover:transform hover:scale-105 transition-all duration-300 relative">
+            <div data-aos="fade-up" class="text-center hover:transform hover:scale-105 transition-all duration-300 relative">
                 <div class="hero-bg absolute top-0 left-0 w-full h-full"></div>
-                <div class="terminal-window mb-6 relative" style="background-color: var(--bg-primary); border-radius: 4px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 100%; max-width: 1200px; margin: 0 auto;">
-                    <div class="terminal-header flex items-center justify-between" style="background-color: var(--bg-secondary); padding: 16px 24px; border-bottom: 1px solid var(--bg-primary);">
+                <div class="terminal-window mb-6 relative" style="background-color: rgba(10, 10, 20, 0.95); border: 1px solid var(--accent); border-radius: 4px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.356); width: 100%; max-width: 1200px; margin: 0 auto;">
+                    <div class="terminal-header flex items-center justify-between" style="background-color: rgba(20, 20, 40, 0.95); padding: 16px 24px; border-bottom: 1px solid var(--accent);">
                         <div class="terminal-buttons flex space-x-2">
-                            <span class="terminal-button close" style="background-color: #ff5f56; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
-                            <span class="terminal-button minimize" style="background-color: #ffbd2e; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
-                            <span class="terminal-button maximize" style="background-color: #27c93f; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
+                            <span class="terminal-button close" style="background-color: #ff5f56; width: 16px; height: 16px; border-radius: 50%; display: inline-block; box-shadow: 0 0 5px rgba(255, 95, 86, 0.5);"></span>
+                            <span class="terminal-button minimize" style="background-color: #ffbd2e; width: 16px; height: 16px; border-radius: 50%; display: inline-block; box-shadow: 0 0 5px rgba(255, 189, 46, 0.5);"></span>
+                            <span class="terminal-button maximize" style="background-color: #27c93f; width: 16px; height: 16px; border-radius: 50%; display: inline-block; box-shadow: 0 0 5px rgba(39, 201, 63, 0.5);"></span>
                         </div>
-                        <div class="terminal-title" style="color: var(--text-secondary); font-weight: bold; font-size: 1.25rem;">visitor@portfolio:~</div>
+                        <div class="terminal-title" style="color: var(--accent); font-weight: bold; font-size: 1.25rem;">[SYSTEM] visitor@Portfolio:~</div>
                     </div>
-                    <div class="terminal-content p-8" style="color: var(--text-primary); font-family: 'JetBrains Mono', monospace; text-align: left; overflow-x: auto; min-height: 200px;">
-                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">$</span> cat name.txt | figlet</p>
-                        <pre class="text-5xl sm:text-6xl md:text-7xl font-bold whitespace-pre-wrap" style="color: var(--accent);">NeelaNagaSai  
+                    <div class="terminal-content p-8" style="color: var(--text-primary); font-family: 'Share Tech Mono', monospace; text-align: left; overflow-x: auto; min-height: 200px;">
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem; ">$</span> <span class="text-gray-400">cat name.txt | figlet</span></p>
+                        <pre class="text-5xl sm:text-6xl md:text-7xl font-bold whitespace-pre-wrap" style="color: var(--accent); ">NeelaNagaSai  
                         </pre>
-                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">$</span> whoami</p>
-                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem;">> </span><span id="typed-text" class="text-xl sm:text-2xl text-gray-400"></span></p>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem; ">$</span> <span class="text-gray-400">whoami</span></p>
+                        <p class="terminal-line"><span class="terminal-prompt" style="color: var(--accent); font-size: 1.25rem; ">> </span><span id="typed-text" class="text-xl sm:text-2xl text-gray-400"></span></p>
                     </div>
                 </div>
             </div>
@@ -74,7 +101,7 @@
     <!-- About Section -->
     <section id="about" class="py-12 md:py-20 px-4 md:px-6" style="background-color: var(--bg-secondary); backdrop-filter : blur(5px);">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> wget info.md</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> bio.dat</h2>
             
             <!-- Introduction Subsection -->
             <div class="card p-6 md:p-8 rounded-lg mb-8" data-aos="fade-up">
@@ -111,7 +138,7 @@
     <!-- Qualifications Section -->
     <section id="qualifications" class="py-12 md:py-20 px-4 md:px-6">
         <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> wget resume.md</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> Credentials</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up">
                     <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text"> > Education</h3>
@@ -127,11 +154,11 @@
                 </div>
                 <div class="card p-6 md:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-xl md:text-2xl font-bold mb-6 gradient-text"> > Skills</h3>
-                    <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                         <template id="skills-template">
-                            <div>
-                                <h4 class="text-base md:text-lg font-bold mb-3 skill-category"></h4>
-                                <ul class="text-sm md:text-base text-gray-400 space-y-2 skill-list">
+                            <div class="p-3 sm:p-4">
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 skill-category"></h4>
+                                <ul class="text-sm sm:text-base md:text-lg text-gray-400 space-y-1 sm:space-y-2 skill-list">
                                     <!-- Each skill item will include a logo and name -->
                                 </ul>
                             </div>
@@ -140,14 +167,14 @@
                 </div>
             </div>
             <div class="card p-6 md:p-8 rounded-lg mb-8 mt-12" data-aos="fade-up">
-                <h3 class="text-xl md:text-2xl font-bold mb-4 gradient-text"> > Certifications</h3>
+                <h3 class="text-xl md:text-2xl font-bold mb-4 gradient-text"> > Archives</h3>
                 <div id="certifications-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <template id="certification-template">
                         <div class="card p-6 md:p-8 rounded-lg shadow-lg bg-gray-800 text-gray-200 hover:shadow-xl transition-shadow duration-300" data-aos="fade-up">
-                            <h4 class="text-lg md:text-xl font-bold mb-2 certification-title text-accent"></h4>
-                            <p class="text-sm md:text-base text-gray-400 mb-2 certification-issuer"></p>
-                            <p class="text-sm md:text-base text-gray-500 italic mb-4 certification-date"></p>
-                            <p class="text-sm md:text-base text-gray-300 certification-description leading-relaxed"></p>
+                            <h4 class="text-base md:text-lg font-bold mb-2 certification-title text-accent"></h4>
+                            <p class="text-xs md:text-sm text-gray-400 mb-2 certification-issuer"></p>
+                            <p class="text-xs md:text-sm text-gray-500 italic mb-4 certification-date"></p>
+                            <p class="text-xs md:text-sm text-gray-300 certification-description leading-relaxed"></p>
                         </div>
                     </template>
                 </div>
@@ -189,7 +216,7 @@
     <!-- Contact Section -->
     <section id="contact" class="py-12 md:py-20 px-4 md:px-6">
         <div class="container mx-auto max-w-2xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> contact</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 terminal-text" data-aos="fade-up">> connect</h2>
             <div class="card p-6 md:p-8 rounded-lg text-center" data-aos="fade-up">
                 <div class="mb-6 md:mb-8">
                     <h3 class="text-lg md:text-xl mb-2">Email</h3>
