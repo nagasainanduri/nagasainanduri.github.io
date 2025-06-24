@@ -33,10 +33,7 @@ new Typed('#typed-text', {
     typeSpeed: 50,
     backSpeed: 30,
     loop: true,
-    fadeOut: true,
-    fadeOutClass: 'typed-fade-out',
-    fadeOutDelay: 500,
-    showCursor: false
+    showCursor: true
 });
 
 // GitHub Repos Loading Script
@@ -122,7 +119,7 @@ function initializeMatrixBackground() {
     setInterval(draw, 35);
 }
 
-// Certifications Script
+// Certifications
 function loadCertifications() {
     fetch('/scripts/certifications.json')
         .then(response => response.json())
@@ -143,7 +140,7 @@ function loadCertifications() {
         .catch(error => console.error('Error loading certifications:', error));
 }
 
-// Education Script
+// Education
 function loadEducation() {
     fetch('/scripts/education.json')
         .then(response => response.json())
@@ -163,7 +160,7 @@ function loadEducation() {
         .catch(error => console.error('Error loading education data:', error));
 }
 
-// Skills Script
+// Skills
 function loadSkills() {
     fetch('/scripts/skills.json')
         .then(response => response.json())
@@ -180,13 +177,13 @@ function loadSkills() {
                     const listItem = document.createElement('li');
                     listItem.classList.add('flex', 'items-center', 'space-x-2');
 
-                    // Add logo
+                    // Adds skill logo
                     const logo = document.createElement('img');
                     logo.src = item.logo;
                     logo.alt = `${item.name} logo`;
-                    logo.classList.add('w-6', 'h-6'); // Adjust size as needed
+                    logo.classList.add('w-6', 'h-6');
 
-                    // Add skill name
+                    // Adds skill name
                     const skillName = document.createElement('span');
                     skillName.textContent = item.name;
 
@@ -214,8 +211,7 @@ function toggleMenu() {
         menuToggle.classList.remove('active');
         menuToggle.innerHTML = '<i class="fas fa-terminal"></i>';
         document.body.style.overflow = '';
-        
-        // Wait for animation to complete before removing active class
+
         setTimeout(() => {
             fullscreenMenu.classList.remove('active', 'closing');
         }, 300);
@@ -235,8 +231,7 @@ menuLinks.forEach(link => {
         menuToggle.classList.remove('active');
         menuToggle.innerHTML = '<i class="fas fa-terminal"></i>';
         document.body.style.overflow = '';
-        
-        // Wait for animation to complete before removing active class
+
         setTimeout(() => {
             fullscreenMenu.classList.remove('active', 'closing');
         }, 300);
@@ -251,14 +246,12 @@ document.addEventListener('keydown', (e) => {
         menuToggle.innerHTML = '<i class="fas fa-terminal"></i>';
         document.body.style.overflow = '';
         
-        // Wait for animation to complete before removing active class
         setTimeout(() => {
             fullscreenMenu.classList.remove('active', 'closing');
         }, 300);
     }
 });
 
-// Initialize All Scripts on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
     loadGitHubRepos();
     initializeMatrixBackground();

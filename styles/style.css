@@ -77,11 +77,6 @@ body {
     animation: float 20s ease-in-out infinite reverse;
 }
 
-/* Hide typing cursor */
-.typed-cursor {
-    display: none !important;
-}
-
 @keyframes float {
     0% { transform: translate(0, 0) rotate(0deg); }
     50% { transform: translate(30px, 30px) rotate(180deg); }
